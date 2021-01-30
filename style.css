@@ -1,0 +1,73 @@
+*, *::beofore, *::after {
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: 400px;
+  perspective: 1000px;
+}
+
+.card-content {
+  text-align: center;
+  position: relative;
+  padding: 5em;
+  transition: transform 3s;
+  background: pink;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-content {
+  transform: rotateY(.5turn); /*90deg*/
+}
+
+.card-front, .card-back {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1em;
+  transform-style: preserve-3d;
+  /* backface-visibility: hidden; */
+}
+
+.card-title {
+  margin-top: 0;
+  font-size: 3rem;
+  transform: translateZ(5rem);
+  order: 2;
+  text-transform: uppercase;
+}
+.card-subtitle {
+  order: 1;
+}
+
+.card-body, .card-subtitle {
+  transform: translateZ(5rem);
+}
+
+.card-back {
+  transform: rotateY(.5turn);
+  background: rgb(46, 46, 46);
+  color: white;
+}
+
+.card-front::before {
+  content: '';
+  position: absolute;
+  --spacer: 1em;
+  top: var(--spacer);
+  bottom: var(--spacer);
+  left: var(--spacer);
+  right: var(--spacer);
+  border: 3px solid currentColor;
+  transform: translateZ(3em);
+}
